@@ -1,4 +1,5 @@
 #include "socketBase.h"
+#include <iostream>
 namespace theNextSocket {
 int ::theNextSocket::WSAManager::count = 0;
 WSAManager::WSAManager() {
@@ -9,6 +10,7 @@ WSAManager::WSAManager() {
         if ( err != 0 ) {
             exit(-1);
         }
+        std::cout << "init wsa" << std::endl;
     }
     ++count;
 }

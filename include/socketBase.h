@@ -29,18 +29,18 @@ public:
      * @param length 接收数据的长度，如果长度为0，则由程序自己决定
      * @return std::string 接收到的数据
      */
-    virtual std::string receive(int length = 0) {};
+    virtual std::string receive(int length = 0) = 0;
     /**
      * @brief 发送数据
      *
      * @param content 发送的数据内容
      */
-    virtual void send(std::string content) {};
+    virtual void send(std::string content) = 0;
 
 private:
     // web服务计数
     WSAManager manage;
 
 };
-const int defalut_port = 8080;
+const int defalut_port = 12800;
 }
