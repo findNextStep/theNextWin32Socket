@@ -19,6 +19,17 @@ target_link_libraries(
 	wsock32
 )
 
+## 本机信息获取封装
+add_library(
+	socketinformation_lib
+	src/lib/socketInformation.cpp
+)
+target_link_libraries(
+	socketinformation_lib
+	socketBase_lib
+	wsock32
+	netapi32
+)
 ## TCP封装
 add_library(
 	theNextTCPptop_lib
@@ -64,4 +75,13 @@ add_executable(
 target_link_libraries(
 	TCP_test_server
 	theNextTCPptop_lib
+)
+## 测试主机信息获取函数
+add_executable(
+	socketInformation_test
+	src/test/socket_information_test.cpp
+)
+target_link_libraries(
+	socketInformation_test
+	socketinformation_lib
 )

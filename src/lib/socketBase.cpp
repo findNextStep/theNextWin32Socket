@@ -10,7 +10,6 @@ WSAManager::WSAManager() {
         if ( err != 0 ) {
             exit(-1);
         }
-        std::cout << "init wsa" << std::endl;
     }
     ++count;
 }
