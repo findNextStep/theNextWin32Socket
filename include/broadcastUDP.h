@@ -6,16 +6,16 @@
 namespace theNextSocket {
 class broadcaseUDP : public socketBase {
 public:
-    broadcaseUDP();
     broadcaseUDP(int port);
+    broadcaseUDP():broadcaseUDP(defalut_port) {}
     virtual ~broadcaseUDP() {}
     std::string receive(int length = 0);
     void send(std::string content);
 protected:
-    void init(int port);
+    void close();
+    void init();
 private:
-    WORD wVersionRequested;
-    WSADATA wsaData;
+    int port;;
     SOCKET connect_socket;
     SOCKADDR_IN sin_from;
     SOCKADDR_IN sin;

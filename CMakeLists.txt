@@ -3,6 +3,15 @@ cmake_minimum_required(VERSION 3.5)
 include_directories(
 	include
 )
+## WSA计数
+add_library(
+	socketBase_lib
+	src/lib/socketBase.cpp
+)
+# target_link_libraries(
+# 	socketBase_lib
+# 	wsock32
+# )
 ## UDP广播封装
 add_library(
 	theNextUDPbroadcast_lib
@@ -10,6 +19,7 @@ add_library(
 )
 target_link_libraries(
 	theNextUDPbroadcast_lib
+	socketBase_lib
 	wsock32
 )
 ## 测试实例，测试是否能够正常发送
