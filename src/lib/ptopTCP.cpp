@@ -17,7 +17,6 @@ void ptopTCP::send(std::string message) {
     this->init();
     int err;
     if ((err = ::bind(connect_socket,(SOCKADDR *) &sin,sizeof(sin)))!= WSANOTINITIALISED){
-wprintf(L"bind function failed with error: %ld\n", err);
     }
     auto i = connect(connect_socket,(sockaddr*)&sin,sizeof(sin));
     if (i == SOCKET_ERROR) {

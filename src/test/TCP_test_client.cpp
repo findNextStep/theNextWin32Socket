@@ -1,15 +1,15 @@
 #include "ptopTCP.h"
+#include "theNextThread.h"
 #include <iostream>
 #include <thread>
 using namespace std;
 int main() {
     ::theNextSocket::ptopTCP p("127.0.0.1");
-    ::std::thread thread([]() {
-        ::theNextSocket::ptopTCP re("127.0.0.1",23333);
-        while (1) {
-            auto str = re.receive();
-            cout << "receive\t"<< str<<endl;
-        }
+    ::theNextSocket::ptopTCP re("127.0.0.1",23333);
+    ::theNextSocket::theNextThread thread([&re]() {
+        cout << "wait" << endl;
+        auto str = re.receive();
+        cout << "receive\t"<< str<<endl;
     });
     string se;
     while(cin >> se) {
@@ -18,6 +18,5 @@ int main() {
         }
         p.send(se);
     }
-    thread.detach();
     return 0;
 }

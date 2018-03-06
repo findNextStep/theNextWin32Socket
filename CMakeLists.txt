@@ -1,5 +1,6 @@
 project(theNextWin32Socket)
 cmake_minimum_required(VERSION 3.5)
+add_compile_options(-std=c++11)
 include_directories(
 	include
 )
@@ -7,6 +8,11 @@ include_directories(
 add_library(
 	socketBase_lib
 	src/lib/socketBase.cpp
+)
+## 线程封装
+add_library(
+	theNextThread_lib
+	src/lib/thenextThread.cpp
 )
 ## UDP广播封装
 add_library(
@@ -67,6 +73,7 @@ add_executable(
 target_link_libraries(
 	TCP_test_client
 	theNextTCPptop_lib
+	theNextThread_lib
 )
 add_executable(
 	TCP_test_server
@@ -75,6 +82,7 @@ add_executable(
 target_link_libraries(
 	TCP_test_server
 	theNextTCPptop_lib
+	theNextThread_lib
 )
 ## 测试主机信息获取函数
 add_executable(
@@ -84,4 +92,14 @@ add_executable(
 target_link_libraries(
 	socketInformation_test
 	socketinformation_lib
+)
+
+## 测试线程库正确性
+add_executable(
+	thenextThread
+	src/test/thread_test.cpp
+)
+target_link_libraries(
+	thenextThread
+	theNextThread_lib
 )
