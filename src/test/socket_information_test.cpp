@@ -1,8 +1,7 @@
 #include "socketInformation.h"
 #include <iostream>
 using namespace std;
-using namespace ::theNextSocket;
 int main() {
-    cout << "ip  as :\t" << getIP()  << endl;
-    cout << "mac as :\t" << getMAC() << endl;
+    cout << "ip  as :\t" << ::theNextSocket::information::getIP()  << endl;
+    cout << "mac as :\t" << ::theNextSocket::information::getMAC() << endl;
 }

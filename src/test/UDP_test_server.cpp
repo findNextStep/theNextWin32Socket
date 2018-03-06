@@ -8,7 +8,7 @@ int main() {
     {
         ::theNextSocket::broadcaseUDP udp;
         others_ip = udp.receive();
-        udp.send(::theNextSocket::getIP());
+        udp.send(::theNextSocket::information::getIP());
     }
     ::theNextSocket::ptopTCP tcp(others_ip);
     std::string mess;

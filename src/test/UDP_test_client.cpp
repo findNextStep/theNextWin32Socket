@@ -7,7 +7,7 @@ int main() {
     std::string others_ip;
     {
         ::theNextSocket::broadcaseUDP udp;
-        udp.send(::theNextSocket::getIP());
+        udp.send(::theNextSocket::information::getIP());
         others_ip = udp.receive();
     }
     ::theNextSocket::ptopTCP tcp(others_ip);

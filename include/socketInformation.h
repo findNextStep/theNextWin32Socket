@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 namespace theNextSocket {
-std::string getIP();
-std::string getMAC();
+	class information {
+	public:
+		static std::string getIP();
+		static std::string getMAC();
+	};
+	
 }
