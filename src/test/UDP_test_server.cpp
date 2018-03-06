@@ -1,9 +1,19 @@
 #include "broadcastUDP.h"
+#include "ptopTCP.h"
+#include "socketInformation.h"
+#include <windows.h>
 #include <iostream>
-using namespace std;
-
 int main() {
-    ::theNextSocket::broadcaseUDP u;
-    while (true)
-        cout <<"receive :"<< u.receive() <<"."<< endl;
+    std::string others_ip;
+    {
+        ::theNextSocket::broadcaseUDP udp;
+        others_ip = udp.receive();
+        udp.send(::theNextSocket::getIP());
+    }
+    ::theNextSocket::ptopTCP tcp(others_ip);
+    std::string mess;
+    while (1) {
+        mess = tcp.receive();
+        std::cout << mess<<::std::endl; 
+    }
 }

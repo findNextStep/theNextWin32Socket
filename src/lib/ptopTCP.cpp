@@ -19,7 +19,7 @@ void ptopTCP::send(std::string message) {
     if ((err = ::bind(connect_socket,(SOCKADDR *) &sin,sizeof(sin)))!= WSANOTINITIALISED){
     }
     auto i = connect(connect_socket,(sockaddr*)&sin,sizeof(sin));
-    if (i == SOCKET_ERROR) {
+    if (i != 0) {
         wprintf(L"connect function failed with error: %ld\n", WSAGetLastError());
         exit(1);
     }

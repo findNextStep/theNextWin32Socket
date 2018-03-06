@@ -46,6 +46,17 @@ target_link_libraries(
 	socketBase_lib
 	wsock32
 )
+## 综合
+add_library(
+	all_lib
+)
+target_link_libraries(
+	all_lib
+socketBase_lib
+theNextUDPbroadcast_lib
+socketinformation_lib
+theNextTCPptop_lib
+)
 ## 测试实例，测试UDP是否能够正常发送
 add_executable(
 	UDP_test_server
@@ -53,6 +64,7 @@ add_executable(
 )
 target_link_libraries(
 	UDP_test_server	
+	all_lib
 	theNextUDPbroadcast_lib 
 )
 
@@ -63,6 +75,7 @@ add_executable(
 )
 target_link_libraries(
 	UDP_test_client	
+	all_lib
 	theNextUDPbroadcast_lib 
 )
 ## 测试实例,测试TCP是否能够正常收发

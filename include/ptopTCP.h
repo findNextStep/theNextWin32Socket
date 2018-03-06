@@ -1,3 +1,4 @@
+#pragma once
 #include "socketBase.h"
 namespace theNextSocket{
 class ptopTCP: public socketBase{
