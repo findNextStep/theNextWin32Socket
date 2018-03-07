@@ -10,7 +10,8 @@ int main() {
 		udp.send(::theNextSocket::information::getIP());
 		others_ip = udp.receive();
 	}
-	::theNextSocket::ptopTCP tcp(others_ip);
+	::theNextSocket::ptopTCP tcp;
+	tcp.setIP(others_ip);
 	std::string mess;
 	while (1) {
 		mess = tcp.receive();

@@ -3,10 +3,11 @@
 #include <memory>
 #include <WinSock2.h>
 #include <windows.h>
+#include <mutex>
 namespace theNextSocket {
 /**
  * @brief 通过全局使用计数统一管理webAPI的获取和释放
- * 
+ *
  */
 class WSAManager {
 public:
@@ -14,6 +15,7 @@ public:
     virtual ~WSAManager();
 private:
     static int count;
+    static ::std::mutex mutex;
 };
 
 /**

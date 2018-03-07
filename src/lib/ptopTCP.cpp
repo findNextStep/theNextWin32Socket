@@ -1,7 +1,7 @@
 #include "ptopTCP.h"
 namespace theNextSocket {
-ptopTCP::ptopTCP(std::string ip, int port)
-    :ip(ip), port(port), socketBase() {}
+ptopTCP::ptopTCP(int port)
+    :port(port), socketBase() {}
 void ptopTCP::init() {
     connect_socket = ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (connect_socket == INVALID_SOCKET) {
@@ -12,6 +12,9 @@ void ptopTCP::init() {
     sin.sin_family = AF_INET;
     sin.sin_port = htons(port);
     sin.sin_addr.S_un.S_addr = inet_addr(ip.c_str());
+}
+void ptopTCP::setIP(std::string ip){
+    this->ip = ip;
 }
 void ptopTCP::send(std::string message) {
     this->init();

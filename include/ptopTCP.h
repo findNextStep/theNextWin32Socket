@@ -3,8 +3,9 @@
 namespace theNextSocket{
 class ptopTCP: public socketBase{
 public:
-    ptopTCP(std::string ip,int port);
-    ptopTCP(std::string ip):ptopTCP(ip,defalut_port) {}
+    ptopTCP(int port);
+    ptopTCP():ptopTCP(defalut_port) {}
+    void setIP(std::string);
     virtual ~ptopTCP() {}
     std::string receive(int length = 0);
     void send(std::string content);

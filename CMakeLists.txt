@@ -49,6 +49,19 @@ target_link_libraries(
 	socketBase_lib
 	wsock32
 )
+## 用户登录类
+add_library(
+	loginer_lib
+	src/lib/loginer.cpp
+)
+target_link_libraries(
+	loginer_lib
+socketBase_lib
+theNextThread_lib
+theNextUDPbroadcast_lib
+socketinformation_lib
+theNextTCPptop_lib
+)
 ## 综合
 add_library(
 	all_lib
@@ -118,4 +131,13 @@ add_executable(
 target_link_libraries(
 	thenextThread
 	theNextThread_lib
+)
+## 测试用户类
+add_executable(
+	userlog
+	src/test/test_loginer.cpp
+)
+target_link_libraries(
+	userlog
+	loginer_lib
 )
