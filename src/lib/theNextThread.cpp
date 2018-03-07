@@ -35,7 +35,7 @@ theNextThread::theNextThread(const std::function<void(void)>& func):fun(func) {
     // fun = func;
 }
 void theNextThread::stop() {
-    CloseHandle(hThread);
+		needRun = false;
 }
 
 }
