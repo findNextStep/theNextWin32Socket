@@ -4,6 +4,9 @@ add_compile_options(-std=c++11)
 include_directories(
 	include
 )
+include_directories(
+	fuchsia-mirror-third_party-json/include	
+)
 ## WSA计数
 add_library(
 	socketBase_lib
