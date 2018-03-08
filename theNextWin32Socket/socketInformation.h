@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include "socketBase.h"
 namespace theNextSocket {
 	class information {
 	public:
@@ -8,3 +8,4 @@ namespace theNextSocket {
 	};
 	
 }
+
