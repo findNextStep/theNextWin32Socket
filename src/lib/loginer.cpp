@@ -28,7 +28,8 @@ loginer::loginer(string name):
     }
 }), accept([this]() {
     ::theNextSocket::ptopTCP tcp;
-    auto receive = tcp.receive();
+    ::nlohmann::json message = ::nlohmann::json::parse(tcp.receive());
+    cout << message["name"] << " --> " << message["message"] << endl;
 }) {
     this->information["ip"] = ::theNextSocket::information::getIP();
     this->information["mac"] = ::theNextSocket::information::getMAC();
@@ -47,5 +48,14 @@ loginer::~loginer() {
     login_message["state"] = false;
     ::theNextSocket::broadcaseUDP udp;
     udp.send(login_message.dump());
+}
+bool loginer::chatTo(std::string name,std::string message) {
+    ::theNextSocket::ptopTCP tcp;
+    tcp.setIP(this->loginers[name]["ip"]);
+    ::nlohmann::json j;
+    j["name"] = this->information["name"];
+    j["message"] = message;
+    tcp.send(j.dump());
+    return true;
 }
 }

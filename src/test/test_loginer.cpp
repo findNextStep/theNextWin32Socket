@@ -4,5 +4,9 @@ int main(){
     ::std::string name;
     std::cin >> name;
     ::theNextChater::loginer a(name);
-    while (1)Sleep(10);
+    while (std::cin >> name){
+        std::string mess;
+        std::cin >> mess;
+        a.chatTo(name,mess);
+    }
 }

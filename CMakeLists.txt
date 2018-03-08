@@ -82,6 +82,7 @@ target_link_libraries(
 	UDP_test_server	
 	all_lib
 	theNextUDPbroadcast_lib 
+	theNextThread_lib
 )
 
 ## 测试实例，测试UDP是否能够正常接收
@@ -93,6 +94,7 @@ target_link_libraries(
 	UDP_test_client	
 	all_lib
 	theNextUDPbroadcast_lib 
+	theNextThread_lib
 )
 ## 测试实例,测试TCP是否能够正常收发
 add_executable(

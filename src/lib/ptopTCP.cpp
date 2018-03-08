@@ -13,10 +13,23 @@ void ptopTCP::init() {
     sin.sin_port = htons(port);
     sin.sin_addr.S_un.S_addr = inet_addr(ip.c_str());
 }
-void ptopTCP::setIP(std::string ip){
+void ptopTCP::setIP(std::string ip) {
     this->ip = ip;
 }
 void ptopTCP::send(std::string message) {
+    this->init();
+
+    while (::connect(connect_socket, (sockaddr*)&sin, sizeof(sin)) == -1) {
+    }
+
+    int front = 0;
+    while (front < message.size()) {
+        front += ::send(connect_socket, message.c_str(), message.size(), 0);
+    }
+    this->close();
+}
+std::string ptopTCP::receive(int length) {
+    char buff[256];
     this->init();
     sin.sin_addr.S_un.S_addr = INADDR_ANY;
     ::bind(connect_socket, (SOCKADDR *)&sin, sizeof(sin));
@@ -24,21 +37,9 @@ void ptopTCP::send(std::string message) {
     sockaddr_in remoteAddr;
     int nAddrLen = sizeof(remoteAddr);
     SOCKET accept_socket = accept(connect_socket, (SOCKADDR*)&remoteAddr, &nAddrLen);
-    int front = 0;
-    while (front < message.size()) {
-        front += ::send(accept_socket, message.c_str(), message.size(), 0);
-    }
-    closesocket(accept_socket);
-    this->close();
-}
-std::string ptopTCP::receive(int length) {
-    char buff[256];
-    this->init();
-    while (::connect(connect_socket, (sockaddr*)&sin, sizeof(sin)) == -1) {
-    }
     std::string re;
     while (true) {
-        int add = ::recv(connect_socket, buff, 256, 0);
+        int add = ::recv(accept_socket, buff, 256, 0);
         if (add ==0) {
             break;
         }
@@ -46,6 +47,7 @@ std::string ptopTCP::receive(int length) {
             re.push_back(buff[i]);
         }
     }
+    closesocket(accept_socket);
     this->close();
     return re;
 }

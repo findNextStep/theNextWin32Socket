@@ -9,6 +9,7 @@ class loginer {
 public:
     loginer(string nickname);
     virtual ~loginer();
+    bool chatTo(std::string name,std::string message);
     const std::map<string,::nlohmann::json>& getLoginerss() {
         return this->loginers;
     }

@@ -1,6 +1,7 @@
 #include "broadcastUDP.h"
 #include "ptopTCP.h"
 #include "socketInformation.h"
+#include "theNextThread.h"
 #include <windows.h>
 #include <iostream>
 int main() {
@@ -11,10 +12,14 @@ int main() {
 		others_ip = udp.receive();
 	}
 	::theNextSocket::ptopTCP tcp;
+	::theNextSocket::ptopTCP tcp2;
 	tcp.setIP(others_ip);
+	// tcp2.setIP(others_ip);
+	::theNextSocket::theNextThread thread([&tcp2](){
+		::std::cout << tcp2.receive() << ::std::endl;
+	});
 	std::string mess;
-	while (1) {
-		mess = tcp.receive();
-		std::cout << others_ip << "\t->\t" << mess << ::std::endl;
+	while (::std::cin >> mess) {
+		tcp.send(mess);
 	}
 }
